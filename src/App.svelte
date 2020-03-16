@@ -1,5 +1,6 @@
 <script>
 	import { onDestroy } from 'svelte'
+	import { formatCurrency, formatTime } from './format'
 
 	let millisecondsSincePageLoad = 0
 	$: secondsSincePageLoad = (millisecondsSincePageLoad / 1000).toFixed(0)
@@ -7,7 +8,7 @@
 	onDestroy(() => clearInterval(interval))
 
 	const bezosPerMillisecond = 2.489
-	$: bezosEarnedSinceLoad = formatCurrency(millisecondsSincePageLoad * bezosPerMillisecond * rates[selectedCurrency])
+	$: bezosEarnedSinceLoad = formatCurrency(millisecondsSincePageLoad * bezosPerMillisecond * rates[selectedCurrency], selectedCurrency)
 
 	let userSalary = 50000
 	$: secondsToEarn = Math.floor((userSalary / rates[selectedCurrency]) / (bezosPerMillisecond * 1000))
@@ -15,23 +16,6 @@
 	let selectedCurrency = 'USD'
 	let rates = {
 		'USD': 1
-	}
-
-	const formatCurrency = (raw) => new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: selectedCurrency,
-			minimumIntegerDigits: 1,
-			maximumFractionDigits: 2
-		}).format(raw)
-	
-	const formatTime = (totalSeconds) => {
-		const years = Math.floor(totalSeconds / (60*60*24*365))
-		const days = Math.floor(totalSeconds % (60*60*24*365) / (60*60*24))
-		const hours = Math.floor((totalSeconds % (60*60*24)) / (60*60))
-		const minutes = Math.floor((totalSeconds % (60*60)) / 60)
-		const seconds = totalSeconds % 60
-
-		return `${years > 0 ? `${years} year${years > 1 ? 's' : ''} ` : ''}${days > 0 ? `${days} day${days > 1 ? 's' : ''} ` : ''}${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} ` : ''}${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} ` : ''}${seconds === 1 ? '1 second' : `${seconds} seconds`}`
 	}
 
 	async function loadExchangeRates () {
