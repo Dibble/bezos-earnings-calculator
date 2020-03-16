@@ -48,7 +48,7 @@
 </script>
 
 <h1>Bezos Earnings Calculator</h1>
-<p>In 2018, Jeff Bezos earned $78.5 Billion. This is equivalent to $215 Million per day, or $2,489 per second.</p>
+<p>In 2018, Jeff Bezos earned $78.5 Billion<a href="https://www.businessinsider.com/what-amazon-ceo-jeff-bezos-makes-every-day-hour-minute-2018-10"><sup>[1]</sup></a>. This is equivalent to $215 Million per day, or $2,489 per second.</p>
 
 <p>It would take Jeff Bezos {formatTime(secondsToEarn)} to earn your annual salary of <input type="number" bind:value={userSalary} step=2500 /><select bind:value={selectedCurrency} on:change="{e => selectedCurrency = e.target.value}">
 	{#each Object.keys(rates).sort() as currency (currency)}
