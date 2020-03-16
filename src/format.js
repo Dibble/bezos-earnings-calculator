@@ -12,5 +12,9 @@ export const formatTime = (totalSeconds) => {
   const minutes = Math.floor((totalSeconds % (60*60)) / 60)
   const seconds = totalSeconds % 60
 
-  return `${years > 0 ? `${years} year${years > 1 ? 's' : ''} ` : ''}${days > 0 ? `${days} day${days > 1 ? 's' : ''} ` : ''}${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} ` : ''}${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} ` : ''}${seconds === 1 ? '1 second' : `${seconds} seconds`}`
+  return `${years > 0 ? `${years} year${years > 1 ? 's' : ''} ` : ''}` +
+        `${days > 0 ? `${days} day${days > 1 ? 's' : ''} ` : ''}` +
+        `${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} ` : ''}` +
+        `${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} ` : ''}` +
+        `${seconds === 1 ? '1 second' : `${seconds} seconds`}`
 }
