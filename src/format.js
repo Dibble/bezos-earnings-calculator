@@ -2,7 +2,8 @@ export const formatCurrency = (raw, currency) => new Intl.NumberFormat('en-US', 
   style: 'currency',
   currency,
   minimumIntegerDigits: 1,
-  maximumFractionDigits: 2
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
 }).format(raw)
 
 export const formatTime = (totalSeconds) => {
